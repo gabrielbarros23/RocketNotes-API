@@ -1,0 +1,9 @@
+npx install knex --save
+
+npx knex init
+
+--depois de falar onde ficara a migrations no index
+
+npx knex migrate:make "nome"
+
+npx knex migrate:latest
