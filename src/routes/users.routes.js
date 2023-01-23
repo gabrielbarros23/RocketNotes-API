@@ -3,24 +3,20 @@ const usersRouter = Router()
 
 const UsersController = require("../controllers/UsersController")
 const usersController = new UsersController()
+const UserAvatarController = require("../controllers/UserAvatarController")
+const userAvatarControllers = new UserAvatarController()
+const ensureAutheticated = require('../middlewares/ensureAutheticated')
+const multerConfig = require('../configs/upload')
+const multer = require('multer')
 
-// function myMiddleware(req, res, next) {
-//     console.log("Voce passou no Middleware")
-//     console.log(req.body)
-    
-//     if(!req.body.IsAdmin) {
-//         return res.json({message: "You are not admin"})
-//     }
-
-//     next()
-// }
-
+const upload = multer(multerConfig.MULTER)
 
 
 
 
 usersRouter.post('/', usersController.create)
-usersRouter.put('/:id', usersController.update)
+usersRouter.put('/', ensureAutheticated, usersController.update)
+usersRouter.patch('/avatar', ensureAutheticated, upload.single("avatar"), userAvatarControllers.update)
 
 
 module.exports = usersRouter
