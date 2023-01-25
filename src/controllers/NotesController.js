@@ -91,7 +91,6 @@ class NotesController {
             .where({user_id})
             .whereLike("title", `%${title}%`)
             .orderBy('title')
-
         }
 
         const searchTags = await knex('tags').where({user_id})
