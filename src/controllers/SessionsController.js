@@ -7,7 +7,7 @@ const {sign} = require('jsonwebtoken')
 
 class SessionsController {
     async create(req, res) {
-        const {password, email} = req.body 
+        const {email, password} = req.body 
 
         const user = await knex('users').where({email}).first()
 
