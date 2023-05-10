@@ -34,7 +34,6 @@ class UsersController {
 
         if(password && oldpassword) {
             const checkOldPassword = await compare(oldpassword, user.password)
-            console.log(checkOldPassword)
             if(!checkOldPassword) {
                 throw new AppError('a senha antiga esta errada')
             }
@@ -55,12 +54,5 @@ class UsersController {
         return res.status(201).json()
     } 
 }
-/*
-    * Index - GET para listar vários registros.
-    * Show - GET para exibir um registro especifico.
-    * Create - POST para criar um registro.
-    * Update - Put para atualizar um registro.
-    * Delete - DELETE para remover um registro.
-*/
 
 module.exports = UsersController
